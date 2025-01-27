@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "cli.h"
 
@@ -18,27 +19,83 @@ void display_menu()
     printf("Enter your choice: ");
 }
 
-int is_valid_int()
+void clear_input_buffer()
 {
-    int num;
+    while (getchar() != '\n')
+        ;
+}
+
+int get_valid_int(char *prompt)
+{
+    int value;
     while (1)
     {
-        if (scanf("%d", &num) != 1)
+        printf("%s", prompt);
+        if (scanf("%d", &value) != 1)
         {
-            // clears input buffer. Otherwise, program will infinite loop
-            while (getchar() != '\n')
-                ;
-            printf("Invalid choice. Please try again.\n");
+            printf("Invalid input. Please enter a valid integer.\n");
+            clear_input_buffer();
         }
         else
         {
-            return num;
+            clear_input_buffer();
+            return value;
         }
     }
 }
 
-int is_valid_name()
+void get_valid_string(char *prompt, char *buffer, int max_length)
 {
+    while (1)
+    {
+        printf("%s", prompt);
+        if (fgets(buffer, max_length, stdin) == NULL)
+        {
+            printf("Error reading input. Please try again.\n");
+        }
+        else
+        {
+            size_t length = strlen(buffer);
+            if (length > 0 && buffer[length - 1] == '\n')
+            {
+                buffer[length - 1] = '\0';
+            }
 
-    return 1;
+            if (strlen(buffer) == 0)
+            {
+                printf("Input cannot be empty. Please try again.\n");
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+}
+
+void get_valid_subject_string(char *prompt, char *buffer, int max_length)
+{
+    while (1)
+    {
+        get_valid_string(prompt, buffer, max_length);
+
+        int valid = 1;
+        for (int i = 0; i < strlen(buffer); i++)
+        {
+            if (!isalpha(buffer[i]) && buffer[i] != ' ' && buffer[i] != ',')
+            {
+                valid = 0;
+                break;
+            }
+        }
+
+        if (valid)
+        {
+            return;
+        }
+        else
+        {
+            printf("Invalid characters in input. Please enter only letters, spaces, and commas.\n");
+        }
+    }
 }

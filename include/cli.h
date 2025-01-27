@@ -6,8 +6,8 @@
 #include <string.h>
 
 void display_menu();
-
-int is_valid_string(char *str);
-int is_valid_int();
+int get_valid_int(char *prompt);
+void get_valid_string(char *prompt, char *buffer, int max_length);
+void get_valid_subject_string(char *prompt, char *buffer, int max_length);
 
 #endif // _CLI_H_

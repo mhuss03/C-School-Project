@@ -19,8 +19,8 @@ int main()
     while (running)
     {
         display_menu();
-
-        user_choice = is_valid_int();
+        scanf("%d", &user_choice);
+        user_choice = get_valid_int("Enter your choice: ");
 
         switch (user_choice)
         {
@@ -30,47 +30,19 @@ int main()
             char name[50];
             char subjects[200]; // Buffer to hold comma-separated subjects
             // scanf("%d", &id);
-            // *    Input cleaner
-            while (1)
-            {
-                printf("Enter Student ID: ");
-                if (scanf("%d", &id) != 1)
-                {
-                    // clears input buffer. Otherwise, program will infinite loop
-                    while (getchar() != '\n')
-                        ;
-                    printf("Invalid choice. Please try again.\n");
-                }
-                else
-                {
-                    break;
-                }
-            }
+            id = get_valid_int("Enter Student ID: ");
 
-            // ***
-            // printf("\nEnter Student Name: ");
-            // scanf(" %[^\n]", name); // Read a string with spaces
-            while (1)
-            {
-                printf("Enter Student Name: ");
-                // Potential Overflow fixed
-                if (scanf(" %49[^\n]", name) != 1)
-                {
-                    // clears input buffer. Otherwise, program will infinite loop
-                    while (getchar() != '\n')
-                        ;
-                    break;
-                    ;
-                }
-            }
+            get_valid_string("Enter Student Name: ", name, sizeof(name));
 
             add_student(&student_list, id, name); // Add the student
             StudentNode *new_student = find_student_by_id(student_list, id);
             printf("Student added successfully.\n");
 
-            printf("Enter the subjects they study (separated by commas): ");
-            // ***
-            scanf(" %[^\n]", subjects); // Read the entire line of subjects
+            get_valid_subject_string("Enter the subjects they study (separated by commas): ", subjects, sizeof(subjects));
+
+            // Old
+            // printf("Enter the subjects they study (separated by commas): ");
+            // scanf(" %[^\n]", subjects); // Read the entire line of subjects
 
             // Parse the comma-separated list of subjects
             char *token = strtok(subjects, ",");
@@ -100,13 +72,19 @@ int main()
             int id;
             char name[50];
             char subject[50];
-            printf("Enter Teacher ID: ");
-            scanf("%d", &id);
-            printf("\nEnter Teacher Name: ");
-            scanf(" %[^\n]", name); // Read a string with spaces
-            printf("\nEnter Teacher Subject: ");
-            scanf(" %[^\n]", subject); // Read a string with spaces
-            printf("\n");
+            // old
+            // printf("Enter Teacher ID: ");
+            //  scanf("%d", &id);
+            //  printf("\nEnter Teacher Name: ");
+            //  scanf(" %[^\n]", name); // Read a string with spaces
+            //  printf("\nEnter Teacher Subject: ");
+            //  scanf(" %[^\n]", subject); // Read a string with spaces
+            //  printf("\n");
+            id = get_valid_int("Enter Teacher ID: ");
+
+            get_valid_string("Enter Teacher Name: ", name, sizeof(name));
+            get_valid_string("Enter Teacher Subject: ", subject, sizeof(subject));
+
             add_teacher(&teacher_list, id, name, subject);
             printf("Teacher added successfully.\n");
             break;
@@ -125,11 +103,13 @@ int main()
             int student_id;
             char subject_name[50];
 
-            printf("Enter Student ID: ");
-            scanf("%d", &student_id);
+            // printf("Enter Student ID: ");
+            // scanf("%d", &student_id);
+            student_id = get_valid_int("Enter Student ID: ");
 
-            printf("\nEnter Subject Name: ");
-            scanf(" %[^\n]", subject_name); // Read a string with spaces
+            // printf("\nEnter Subject Name: ");
+            // scanf(" %[^\n]", subject_name); // Read a string with spaces
+            get_valid_string("Enter Subject Name: ", subject_name, sizeof(subject_name));
 
             StudentNode *student = find_student_by_id(student_list, student_id);
             if (student != NULL)
@@ -148,8 +128,9 @@ int main()
             // Find students by Subject
             char subject_name[50];
 
-            printf("Enter Subject Name: ");
-            scanf(" %[^\n]", subject_name); // Read a string with spaces
+            // printf("Enter Subject Name: ");
+            // scanf(" %[^\n]", subject_name); // Read a string with spaces
+            get_valid_string("Enter Subject Name: ", subject_name, sizeof(subject_name));
 
             if (student_list == NULL)
             {
