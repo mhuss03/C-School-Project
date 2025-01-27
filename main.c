@@ -173,7 +173,7 @@ int main()
         {
             char subject[50];
             get_valid_string("Enter Subject: ", subject, sizeof(subject));
-            find_teacher_by_subject(teacher_list, subject);
+            print_teacher_by_subject(teacher_list, subject);
             break;
         }
         case 10:
