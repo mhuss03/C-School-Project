@@ -6,12 +6,13 @@
 #include "include/student.h"
 #include "include/teacher.h"
 #include "include/cli.h"
+#include "include/grade.h"
 
 int main()
 {
     StudentNode *student_list = NULL;
     TeacherNode *teacher_list = NULL;
-    TeacherNode *grade_list = NULL;
+    GradeNode *grade_list = NULL;
 
     int user_choice;
     int running = 1;
@@ -165,10 +166,17 @@ int main()
             int student_id = get_valid_int("Enter Student ID: ");
             char subject[50];
             get_valid_string("Enter Subject: ", subject, sizeof(subject));
-
-            print_grades_for_student(grade_list, student_id, subject);
+            print_grade_for_student(grade_list, student_id, subject);
+            break;
         }
         case 9:
+        {
+            char subject[50];
+            get_valid_string("Enter Subject: ", subject, sizeof(subject));
+            find_teacher_by_subject(teacher_list, subject);
+            break;
+        }
+        case 10:
             // Exit program
             printf("Goodbye!\n");
             running = 0;

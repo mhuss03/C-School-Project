@@ -61,7 +61,7 @@ GradeNode *find_grade(GradeNode *head, int student_id, const char *subject)
 //     }
 //     printf("\n"); // Print a newline to separate the grades for different subjects
 // }
-void print_grades_for_student(GradeNode *head, int student_id, const char *subject)
+void print_grade_for_student(GradeNode *head, int student_id, const char *subject)
 {
     GradeNode *current = head;
     int found = 0;

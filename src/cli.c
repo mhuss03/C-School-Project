@@ -16,7 +16,8 @@ void display_menu()
     printf("6. Find Students by Subject\n");
     printf("7. Add Grade to Student\n");
     printf("8. View Grades for a Student\n");
-    printf("9. Exit\n");
+    printf("9. Find Teacher by Subject\n");
+    printf("10. Exit\n");
     printf("--------------------------------\n");
 }
 

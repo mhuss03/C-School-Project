@@ -8,7 +8,7 @@ INCDIR = include
 OBJDIR = obj
 
 # Source and object files
-SRCS = main.c $(SRCDIR)/student.c $(SRCDIR)/teacher.c $(SRCDIR)/cli.c
+SRCS = main.c $(SRCDIR)/student.c $(SRCDIR)/teacher.c $(SRCDIR)/cli.c $(SRCDIR)/grade.c
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 # Output executable
