@@ -19,7 +19,7 @@ int main()
     while (running)
     {
         display_menu();
-        scanf("%d", &user_choice);
+        // scanf("%d", &user_choice);
         user_choice = get_valid_int("Enter your choice: ");
 
         switch (user_choice)

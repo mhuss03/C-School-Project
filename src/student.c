@@ -101,26 +101,63 @@ void add_subject_to_student(StudentNode *student, const char *subject_name)
 }
 
 // NEEDS DEBUGGING
-void students_by_subject(StudentNode *head, const char *subject)
+// void students_by_subject(StudentNode *head, const char *subject)
+// {
+//     StudentNode *current = head;
+//     int found = 0;
+//     printf("\n");
+//     printf("Students studying %s:\n", subject);
+//     printf("================================================\n");
+//     for (int i = 0; i < current->num_subjects; i++)
+//     {
+//         if (strcmp(current->subjects[i], subject) == 0)
+//         {
+//             printf("ID: %d\nName: %s\n", current->id, current->name);
+//             found++;
+//         }
+//         current = current->next;
+//     }
+//     if (found == 0)
+//     {
+//         printf("No students found studying %s.\n", subject);
+//     }
+//     printf("================================================\n");
+//     printf("\n");
+// }
+void students_by_subject(StudentNode *head, char *subject)
 {
+    if (head == NULL)
+    {
+        printf("\nNo students available.\n");
+        return;
+    }
+
     StudentNode *current = head;
     int found = 0;
+
     printf("\n");
     printf("Students studying %s:\n", subject);
     printf("================================================\n");
-    for (int i = 0; i < current->num_subjects; i++)
+
+    while (current != NULL)
     {
-        if (strcmp(current->subjects[i], subject) == 0)
+        for (int i = 0; i < current->num_subjects; i++)
         {
-            printf("ID: %d\nName: %s\n", current->id, current->name);
-            found++;
+            if (strcmp(current->subjects[i], subject) == 0)
+            {
+                printf("ID: %d\nName: %s\n", current->id, current->name);
+                found++;
+                break;
+            }
         }
         current = current->next;
     }
+
     if (found == 0)
     {
         printf("No students found studying %s.\n", subject);
     }
+
     printf("================================================\n");
     printf("\n");
 }
