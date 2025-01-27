@@ -14,9 +14,10 @@ void display_menu()
     printf("4. Print Teachers\n");
     printf("5. Add Subject to Student\n");
     printf("6. Find Students by Subject\n");
-    printf("7. Exit\n");
+    printf("7. Add Grade to Student\n");
+    printf("8. View Grades for a Student\n");
+    printf("9. Exit\n");
     printf("--------------------------------\n");
-    printf("Enter your choice: ");
 }
 
 void clear_input_buffer()

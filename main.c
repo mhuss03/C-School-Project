@@ -11,6 +11,7 @@ int main()
 {
     StudentNode *student_list = NULL;
     TeacherNode *teacher_list = NULL;
+    TeacherNode *grade_list = NULL;
 
     int user_choice;
     int running = 1;
@@ -142,6 +143,32 @@ int main()
             break;
         }
         case 7:
+        {
+            int student_id, grade;
+            char subject[50];
+
+            student_id = get_valid_int("Enter Student ID: ");
+            get_valid_string("Enter Subject: ", subject, sizeof(subject));
+            grade = get_valid_int("Enter Grade (0-100): ");
+
+            if (grade < 0 || grade > 100)
+            {
+                printf("Invalid grade. Please enter a grade between 0 and 100.\n");
+                break;
+            }
+
+            add_grade(&grade_list, student_id, subject, grade);
+            break;
+        }
+        case 8:
+        {
+            int student_id = get_valid_int("Enter Student ID: ");
+            char subject[50];
+            get_valid_string("Enter Subject: ", subject, sizeof(subject));
+
+            print_grades_for_student(grade_list, student_id, subject);
+        }
+        case 9:
             // Exit program
             printf("Goodbye!\n");
             running = 0;

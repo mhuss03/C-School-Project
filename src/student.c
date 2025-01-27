@@ -124,7 +124,7 @@ void add_subject_to_student(StudentNode *student, const char *subject_name)
 //     printf("================================================\n");
 //     printf("\n");
 // }
-void students_by_subject(StudentNode *head, char *subject)
+void students_by_subject(StudentNode *head, const char *subject)
 {
     if (head == NULL)
     {
